@@ -21,7 +21,7 @@ teardown() {
   ddev list
   ddev get ${DIR}
   ddev restart
-  ddev exec "curl -s http://elasticsearch:9200 | grep testelasticsearch-elasticsearch"
+  ddev exec "curl -s http://elasticsearch:9200"
 #  v=$(ddev exec 'printf "version\nquit\nquit\n" | nc memcached 11211')
 #  [[ "${v}" = VERSION* ]]
 #  res=$(ddev exec 'printf "list-tubes\nquit\n" | nc -C beanstalkd 11300')
