@@ -6,7 +6,7 @@ setup() {
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME} --project-type=php
-  ddev start
+  ddev start -y
 }
 
 teardown() {

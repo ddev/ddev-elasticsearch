@@ -63,7 +63,7 @@ jobs:
 
     - name: Download docker images
       run: | 
-        mkdir junk && pushd junk && ddev config --auto && ddev debug download-images >/dev/null
+        mkdir junk && pushd junk && ddev config --auto && ddev debug download-images >/dev/null && ddev delete -Oy junk
     - name: tmate debugging session
       uses: mxschmitt/action-tmate@v3
       with:
