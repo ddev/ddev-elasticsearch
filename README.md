@@ -2,6 +2,8 @@
 
 ## Installation
 
+Uses [elasticsearch official image](https://hub.docker.com/_/elasticsearch)
+
 `ddev get drud/ddev-elasticsearch`
 
 ## Configuration
@@ -14,7 +16,7 @@ You can access the Elasticsearch server directly from the host for debugging pur
 
 ## Memory Limit
 
-This configuration limits memory usage to 512mb. This should be enough for most projects, but if your `elasticsearch` service stops with no obvious reason, increase your docker max memory and/or the service max memory.
+This configuration limits memory usage to 512mb. This should be enough for most projects, but if your `elasticsearch` service stops with no obvious reason, increase your docker max memory and/or the service max memory via the `      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"` environment variable in `docker-compose.elasticsearch.yaml`.
 
 You can use `ddev logs -s elasticsearch` to investigate what the elasticsearch daemon has been up to, or if you have a RAM-related crash.
 

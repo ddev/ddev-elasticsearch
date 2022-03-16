@@ -1,11 +1,11 @@
 setup() {
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export TESTDIR=$(mktemp -d -t testmemcached-XXXXXXXXXX)
-  export PROJNAME=testmemcached
+  export TESTDIR=$(mktemp -d -t testelasticsearch-XXXXXXXXXX)
+  export PROJNAME=testelasticsearch
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} || true
   cd "${TESTDIR}"
-  ddev config --project-name=${PROJNAME} --project-type=drupal9 --docroot=web --create-docroot
+  ddev config --project-name=${PROJNAME} --project-type=php
   ddev start
 }
 
@@ -18,7 +18,7 @@ teardown() {
 @test "basic installation" {
   cd ${TESTDIR}
   ddev get ${DIR}
-  ddev restart
+  ddev exec "curl -s http://elasticsearch:9200 | grep testelasticsearch-elasticsearch"
 #  v=$(ddev exec 'printf "version\nquit\nquit\n" | nc memcached 11211')
 #  [[ "${v}" = VERSION* ]]
 #  res=$(ddev exec 'printf "list-tubes\nquit\n" | nc -C beanstalkd 11300')
