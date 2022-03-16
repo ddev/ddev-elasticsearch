@@ -17,8 +17,10 @@ teardown() {
 
 @test "basic installation" {
   cd ${TESTDIR}
+  ddev config global --simple-formatting
   ddev list
   ddev get ${DIR}
+  ddev restart
   ddev exec "curl -s http://elasticsearch:9200 | grep testelasticsearch-elasticsearch"
 #  v=$(ddev exec 'printf "version\nquit\nquit\n" | nc memcached 11211')
 #  [[ "${v}" = VERSION* ]]
