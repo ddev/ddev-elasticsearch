@@ -21,6 +21,8 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
       - ".:/mnt/ddev_config"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail -s localhost:9200"]
 
 volumes:
   elasticsearch:
