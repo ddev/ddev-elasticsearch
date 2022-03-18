@@ -1,4 +1,5 @@
 setup() {
+  set -eu -o pipefail
   export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
   export TESTDIR=~/tmp/testelasticsearch
   mkdir -p $TESTDIR
@@ -12,12 +13,14 @@ setup() {
 }
 
 teardown() {
+  set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  ddev delete -Oy ${DDEV_SITENAME}
+  ddev delete -Oy ${PROJNAME}
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
 @test "install from directory" {
+  set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${DIR}
@@ -26,6 +29,7 @@ teardown() {
 }
 
 @test "install from release" {
+  set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get drud/ddev-elasticsearch with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get drud/ddev-elasticsearch
