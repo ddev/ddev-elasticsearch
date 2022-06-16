@@ -1,4 +1,4 @@
-name: addon-template
+name: ddev-elasticsearch
 
 pre_install_actions:
 
