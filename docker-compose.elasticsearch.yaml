@@ -4,7 +4,7 @@ services:
   elasticsearch:
     container_name: ddev-${DDEV_SITENAME}-elasticsearch
     hostname: ${DDEV_SITENAME}-elasticsearch
-    image: elasticsearch:7.17.1
+    image: elasticsearch:7.17.6
     expose:
       - "9200"
       - "9300"
