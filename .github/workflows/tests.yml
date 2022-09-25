@@ -37,6 +37,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
     - name: Environment setup
       run: |
         brew install bats-core mkcert
@@ -74,3 +75,6 @@ jobs:
     - name: tests
       run: bats tests
 
+      # keepalive-workflow adds a dummy commit if there's no other action here, keeps
+      # GitHub from turning off tests after 60 days
+    - uses: gautamkrishnar/keepalive-workflow@v1
