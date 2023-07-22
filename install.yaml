@@ -1,4 +1,4 @@
-name: ddev-elasticsearch
+name: elasticsearch
 
 pre_install_actions:
 
