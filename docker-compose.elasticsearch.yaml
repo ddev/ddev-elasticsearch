@@ -22,7 +22,7 @@ services:
       - elasticsearch:/usr/share/elasticsearch/data
       - ".:/mnt/ddev_config"
     healthcheck:
-      test: ["CMD-SHELL", "curl --fail -s localhost:9200"]
+      test: ["CMD-SHELL", "curl --fail -s elasticsearch:9200"]
 
 volumes:
   elasticsearch:

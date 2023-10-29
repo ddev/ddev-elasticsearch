@@ -4,4 +4,5 @@ pre_install_actions:
 
 # list of files and directories listed that are copied into project .ddev directory
 project_files:
+- elasticsearch/
 - docker-compose.elasticsearch.yaml
