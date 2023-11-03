@@ -6,6 +6,10 @@ Uses [elasticsearch official image](https://hub.docker.com/_/elasticsearch)
 
 `ddev get ddev/ddev-elasticsearch`
 
+### Using Elasticsearch 8
+
+Post `ddev get`, run `cp .ddev/elasticsearch/docker-compose.elasticsearch8.yaml .ddev/` to enable Elasticsearch 8.
+
 ## Configuration
 
 From within the container, the elasticsearch container is reached at hostname: "elasticsearch", port: 9200, so the server URL might be `http://elasticsearch:9200`. You can also use the "ddev.site" http and https urls to access it: `http://<projectname>.ddev.site:9200`, and `https://<projectname>.ddev.site:9201`
