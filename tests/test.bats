@@ -47,8 +47,7 @@ teardown() {
   execute_test
 }
 
-# enable after release of https://github.com/ddev/ddev-elasticsearch/pull/16
-# @test "install version 8 from release" {
-#   USE_VERSION8=true
-#   execute_test
-# }
+@test "install version 8 from release" {
+  USE_VERSION8=true
+  execute_test
+}
