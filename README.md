@@ -10,25 +10,28 @@ Uses [elasticsearch official image](https://hub.docker.com/_/elasticsearch)
 
 Post `ddev get`, run `cp .ddev/elasticsearch/docker-compose.elasticsearch8.yaml .ddev/` to enable Elasticsearch 8.
 
-## Configuration
-
-From within the container, the elasticsearch container is reached at hostname: "elasticsearch", port: 9200, so the server URL might be `http://elasticsearch:9200`. You can also use the "ddev.site" http and https urls to access it: `http://<projectname>.ddev.site:9200`, and `https://<projectname>.ddev.site:9201`
-
 ## Connection
 
-You can access the Elasticsearch server directly from the host for debugging purposes by visiting `http://<projectname>.ddev.site:9200`. Via https you can access Elasticsearch via `https://<projectname>.ddev.site:9201`
+To access the Elasticsearch container from within the web container, use the hostname `elasticsearch` and port `9200`. For example, the server URL might be `http://elasticsearch:9200`. Alternatively, you can use the `ddev.site` URLs to access it via HTTP or HTTPS: `http://<projectname>.ddev.site:9200` and `https://<projectname>.ddev.site:9201`. These URLs are also available from the host.
 
-## Memory Limit
+## Configuration
 
-This configuration limits memory usage to 512mb. This should be enough for most projects, but if your `elasticsearch` service stops with no obvious reason, increase your docker max memory and/or the service max memory via the ES_JAVA_OPTS variable:
+Avoid modifying the provided `docker-compose.elasticsearch.yaml` file. Instead, create a `docker-compose.elasticsearch_extras.yaml` file for any customizations. For more information on defining additional services with Docker Compose, please refer to the [official DDEV documentation](https://ddev.readthedocs.io/en/stable/users/extend/custom-compose-files/).
+
+### Memory Limit
+
+By default, this configuration limits the memory usage of the `elasticsearch` service to 512MB. This should be sufficient for most projects. However, if the service stops unexpectedly, you may need to increase the maximum memory allocation for Docker and/or the `elasticsearch` service. To do so, modify the `ES_JAVA_OPTS` environment variable in the `docker-compose.elasticsearch_extras.yaml` file.
+
+Example for 2GB:
 
 ```yaml
-- "ES_JAVA_OPTS=-Xms512m -Xmx512m"` environment variable in `docker-compose.elasticsearch.yaml`
+services:
+  elasticsearch:
+    environment:
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
 ```
 
-If you change this variable, make sure to remove the `#ddev-generated` line at the top of the file. 
-
-You can use `ddev logs -s elasticsearch` to investigate what the elasticsearch daemon has been up to, or if you have a RAM-related crash.
+You can use `ddev logs -s elasticsearch` to investigate the Elasticsearch daemon's activity or to troubleshoot RAM-related crashes.
 
 ## Additional Resources
 
