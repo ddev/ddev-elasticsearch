@@ -4,11 +4,21 @@
 
 Uses [elasticsearch official image](https://hub.docker.com/_/elasticsearch)
 
-`ddev get ddev/ddev-elasticsearch`
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get ddev/ddev-elasticsearch
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get ddev/ddev-elasticsearch
+```
 
 ### Using Elasticsearch 8
 
-Post `ddev get`, run `cp .ddev/elasticsearch/docker-compose.elasticsearch8.yaml .ddev/` to enable Elasticsearch 8.
+After adding the add-on, run `cp .ddev/elasticsearch/docker-compose.elasticsearch8.yaml .ddev/` to enable Elasticsearch 8.
 
 ## Connection
 
