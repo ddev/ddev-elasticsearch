@@ -75,6 +75,38 @@ services:
 
 You can use `ddev logs -s elasticsearch` to investigate the Elasticsearch daemon's activity or to troubleshoot RAM-related crashes.
 
+### CORS settings
+
+To better support decoupled architecture testing, HTTP.CORS configuration to expose the server to any origin is in place.
+
+```yaml
+- "http.cors.allow-origin=*"
+- "http.cors.enabled=true"
+- "http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization,Access-Control-Allow-Origin,Access-Control-Request-Headers"
+- "http.cors.allow-credentials=true"
+- "http.cors.allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE"
+```
+
+When paired with a frontend request with the proper headers, this should allow for cross-origin requests.
+
+```script
+// Example JS fetch() with headers
+fetch('http://vca.ddev.site:9200/elasticsearch_index_db/_search', {
+      method: 'post',
+      body: querystring,
+      //headers: { 'Content-Type': 'application/json' },
+      headers: {
+              'Origin': 'http://localhost:8000',
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Request-Headers': 'access-control-allow-origin,content-type',
+            },
+    })
+```
+
+
+If you change this variable, make sure to remove the `#ddev-generated` line at the top of the file. 
+
 ## Additional Resources
 
 * There are two related answers to the [Stack Overflow question](https://stackoverflow.com/questions/54575785/how-can-i-use-an-elasticsearch-add-on-container-service-with-ddev) on ddev and Elasticsearch.
