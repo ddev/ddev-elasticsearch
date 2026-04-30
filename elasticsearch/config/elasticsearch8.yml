@@ -1,15 +1,21 @@
 #ddev-generated
 # This file contains the configuration settings for Elasticsearch 8.
-# For more information, see https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html
+# For more information, see https://www.elastic.co/guide/en/elasticsearch/reference/8.19/settings.html
 
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#cluster-name
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.19/misc-cluster-settings.html#cluster-name
 cluster.name: "docker-cluster"
 
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#network.host
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.19/important-settings.html#network.host
 network.host: 0.0.0.0
 
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.19/modules-discovery-settings.html
+discovery.type: single-node
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.19/setup-configuration-memory.html#bootstrap-memory_lock
+bootstrap.memory_lock: true
+
 # Disable security features
-# https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html#general-security-settings
+# https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-settings.html#general-security-settings
 xpack.security.enabled: false
 xpack.security.autoconfiguration.enabled: false
 xpack.security.enrollment.enabled: false

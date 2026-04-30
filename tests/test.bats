@@ -63,7 +63,7 @@ teardown() {
   run ddev add-on get "${DIR}"
   assert_success
 
-  export ELASTICSEARCH_VERSION=7.17.14
+  export ELASTICSEARCH_VERSION=9.3.3
   run ddev dotenv set .ddev/.env.elasticsearch --elasticsearch-docker-image=elasticsearch:${ELASTICSEARCH_VERSION}
   assert_success
   assert_file_exist .ddev/.env.elasticsearch
@@ -81,6 +81,27 @@ teardown() {
   echo "# ddev add-on get ${GITHUB_REPO} with project ${PROJNAME} in $(pwd)" >&3
   run ddev add-on get "${GITHUB_REPO}"
   assert_success
+
+  export ELASTICSEARCH_VERSION=9.3.3
+  run ddev dotenv set .ddev/.env.elasticsearch --elasticsearch-docker-image=elasticsearch:${ELASTICSEARCH_VERSION}
+  assert_success
+  assert_file_exist .ddev/.env.elasticsearch
+
+  run ddev restart -y
+  assert_success
+
+  health_checks
+}
+
+@test "install version 7 from directory" {
+  set -eu -o pipefail
+
+  echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
+  run ddev add-on get "${DIR}"
+  assert_success
+
+  cp .ddev/elasticsearch/docker-compose.elasticsearch7.yaml .ddev/
+  assert_file_exist .ddev/docker-compose.elasticsearch7.yaml
 
   export ELASTICSEARCH_VERSION=7.17.14
   run ddev dotenv set .ddev/.env.elasticsearch --elasticsearch-docker-image=elasticsearch:${ELASTICSEARCH_VERSION}

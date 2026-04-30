@@ -20,6 +20,15 @@ ddev restart
 
 After installation, make sure to commit the `.ddev` directory to version control.
 
+
+### Using Elasticsearch 7
+
+```bash
+ddev add-on get ddev/ddev-elasticsearch
+cp .ddev/elasticsearch/docker-compose.elasticsearch7.yaml .ddev/
+ddev restart
+```
+
 ### Using Elasticsearch 8
 
 ```bash
@@ -28,7 +37,7 @@ cp .ddev/elasticsearch/docker-compose.elasticsearch8.yaml .ddev/
 ddev restart
 ```
 
-### Switching between Elasticsearch 7 and 8
+### Switching between Elasticsearch versions
 
 All Elasticsearch data is stored in a Docker volume, so if you're switching versions or setups, you may want to start fresh by removing the volume:
 
@@ -54,15 +63,17 @@ Avoid modifying the provided `docker-compose.elasticsearch.yaml` file. Instead, 
 To change the minor version of Elasticsearch:
 
 ```bash
-ddev dotenv set .ddev/.env.elasticsearch --elasticsearch-docker-image=elasticsearch:7.17.14
+ddev dotenv set .ddev/.env.elasticsearch --elasticsearch-docker-image=elasticsearch:9.0
 ddev restart
 ```
 
 Make sure to commit the `.ddev/.env.elasticsearch` file to version control.
 
+Note that this add-on pulls from [the official Docker registry](https://hub.docker.com/_/elasticsearch).
+
 ### Memory Limit
 
-By default, this configuration limits the memory usage of the `elasticsearch` service to 512MB. This should be sufficient for most projects. However, if the service stops unexpectedly, you may need to increase the maximum memory allocation for Docker and/or the `elasticsearch` service. To do so, modify the `ES_JAVA_OPTS` environment variable in the `docker-compose.elasticsearch_extras.yaml` file.
+By default, this configuration limits the memory usage of the `elasticsearch` service to 1024MB. This should be sufficient for most projects. However, if the service stops unexpectedly, you may need to increase the maximum memory allocation for Docker and/or the `elasticsearch` service. To do so, modify the `ES_JAVA_OPTS` environment variable in the `docker-compose.elasticsearch_extras.yaml` file.
 
 Example for 2GB:
 

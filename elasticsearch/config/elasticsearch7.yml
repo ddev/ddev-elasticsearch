@@ -1,0 +1,15 @@
+#ddev-generated
+# This file contains the configuration settings for Elasticsearch 7.
+# For more information, see https://www.elastic.co/guide/en/elasticsearch/reference/7.17/settings.html
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#cluster-name
+cluster.name: "docker-cluster"
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#network.host
+network.host: 0.0.0.0
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/7.17/modules-discovery-settings.html
+discovery.type: single-node
+
+# https://www.elastic.co/guide/en/elasticsearch/reference/7.17/setup-configuration-memory.html#bootstrap-memory_lock
+bootstrap.memory_lock: true
