@@ -1,34 +1,15 @@
-# This should follow https://github.com/ddev/ddev/blob/main/.editorconfig
-
-# top-most EditorConfig file
 root = true
 
-# Unix-style newlines with a newline ending every file
 [*]
 charset = utf-8
 end_of_line = lf
+indent_size = 4
 indent_style = space
-# Forcing indent to 4 seems to break lots of things, like
-# embedded yaml in markdown.
-# indent_size = 4
 insert_final_newline = true
+trim_trailing_whitespace = true
 
-# GO files
-[*.go]
-indent_style = tab
+[*.md]
+trim_trailing_whitespace = false
 
-# Makefile
-[Makefile]
-indent_style = tab
-
-# Script files
-[*.sh]
-indent_size = 2
-
-# NSIS files
-[*.{nsi,nsh}]
-end_of_line = crlf
-indent_size = 2
-
-[*schema.json]
+[*.{bats,sh,yml,yaml}]
 indent_size = 2
