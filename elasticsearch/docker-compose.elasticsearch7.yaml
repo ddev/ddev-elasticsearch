@@ -1,0 +1,6 @@
+#ddev-generated
+services:
+  elasticsearch:
+    image: ${ELASTICSEARCH_DOCKER_IMAGE:-elasticsearch:7.17.14}
+    volumes:
+      - ./elasticsearch/config/elasticsearch7.yml:/usr/share/elasticsearch/config/elasticsearch.yml
