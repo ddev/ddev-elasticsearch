@@ -27,8 +27,8 @@ bats_load_library bats-support
 
 export DIR="$(cd "$(dirname "${BATS_TEST_FILENAME}")/.." >/dev/null 2>&1 && pwd)"
 export PROJNAME="test-$(basename "${GITHUB_REPO}")"
-mkdir -p ~/tmp
-export TESTDIR=$(mktemp -d ~/tmp/${PROJNAME}.XXXXXX)
+mkdir -p "${HOME}/tmp"
+export TESTDIR="$(mktemp -d "${HOME}/tmp/${PROJNAME}.XXXXXX")"
 export DDEV_NONINTERACTIVE=true
 export DDEV_NO_INSTRUMENTATION=true
 ddev delete -Oy "${PROJNAME}" >/dev/null 2>&1 || true
